@@ -8,6 +8,7 @@ Replacement.init(
         replacements_id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrement: true,
         },
         lesson: DataTypes.INTEGER,
         teacher: DataTypes.STRING,
