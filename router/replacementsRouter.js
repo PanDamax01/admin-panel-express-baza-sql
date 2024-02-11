@@ -3,14 +3,14 @@ import * as Controller from "../controllers/replacementsController.js";
 
 const router = express.Router();
 
-router.get("/replacements", Controller.getAllReplacements);
+router.get("/", Controller.getAllReplacements);
 
-router.get("/replacements/:id", Controller.getReplacementById);
+router.get("/:id", Controller.getReplacementById);
 
-router.post("/replacements", Controller.createReplacement);
+router.post("/", Controller.createReplacement);
 
-router.put("/replacements/:id", Controller.updateReplacement);
+router.put("/:id", Controller.updateReplacement);
 
-router.delete("/replacements/:id", Controller.deleteReplacement);
+router.delete("/:id", Controller.deleteReplacement);
 
 export default router;
