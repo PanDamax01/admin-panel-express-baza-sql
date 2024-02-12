@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import db from "./db.js";
 import { appConfig } from "./config/config.js";
-import replacementsRouter from "./router/replacementsRouter.js";
+import replacementRouter from "./router/replacementRouter.js";
 import classroomsRouter from "./router/classroomsRouter.js";
 
 const app = express();
@@ -20,7 +20,7 @@ try {
     console.error("Unable to connect to the database:", error);
 }
 
-app.use("/replacements", replacementsRouter);
+app.use("/replacements", replacementRouter);
 app.use("/classrooms", classroomsRouter);
 
 app.listen(appConfig.port, () => {
