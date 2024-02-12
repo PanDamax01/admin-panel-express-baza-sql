@@ -3,7 +3,7 @@ import cors from "cors";
 import db from "./db.js";
 import { appConfig } from "./config/config.js";
 import replacementRouter from "./router/replacementRouter.js";
-import classroomsRouter from "./router/classroomsRouter.js";
+import classroomRouter from "./router/classroomRouter.js";
 
 const app = express();
 
@@ -21,7 +21,7 @@ try {
 }
 
 app.use("/replacements", replacementRouter);
-app.use("/classrooms", classroomsRouter);
+app.use("/classrooms", classroomRouter);
 
 app.listen(appConfig.port, () => {
     console.log(`Serwer działa na http://localhost:${appConfig.port}`);
