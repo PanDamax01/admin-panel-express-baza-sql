@@ -3,31 +3,30 @@ import loginIcon from '../../assets/icon-login.png'
 import PasswordIcon from '../../assets/icon-password.png'
 
 import { useState } from 'react'
+import { FullWidthButton } from '../FullWidthButton/FullWidthButton'
 
 export function LoginForm() {
-    const [showPassword, setShowPassword] = useState(false)
+	const [showPassword, setShowPassword] = useState(false)
 
-    function handleShownPassword(e) {
-        e.preventDefault()
-        setShowPassword(!showPassword);
-    }
+	function handleShownPassword(e) {
+		e.preventDefault()
+		setShowPassword(!showPassword)
+	}
 
 	return (
 		<div className={styles.container}>
-
 			<div className={styles.content}>
 				<h1 className={styles.title}>Logowanie</h1>
 
 				<form>
-
 					<div className={styles.box}>
 						<input
 							className={styles.input}
 							type='text'
 							name='login'
 							id='login'
-                            autoComplete='login'
-                            required
+							autoComplete='login'
+							required
 						/>
 						<label className={styles.label} htmlFor='login'>
 							Login
@@ -41,8 +40,8 @@ export function LoginForm() {
 							type={showPassword ? 'text' : 'password'}
 							name='password'
 							id='password'
-                            autoComplete='off'
-                            required
+							autoComplete='off'
+							required
 						/>
 						<label className={styles.label} htmlFor='password'>
 							Hasło
@@ -52,13 +51,14 @@ export function LoginForm() {
 							src={PasswordIcon}
 							alt='Icon password'
 						/>
-                        <button onClick={handleShownPassword} className={styles.eyes}>👀</button>
+						<button onClick={handleShownPassword} className={styles.eyes}>
+							👀
+						</button>
 					</div>
 
-					<button className={styles.button}>Zaloguj się</button>
+					<FullWidthButton>Zaloguj się</FullWidthButton>
 				</form>
 			</div>
-
 		</div>
 	)
 }
