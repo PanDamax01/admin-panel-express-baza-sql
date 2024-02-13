@@ -1,73 +1,48 @@
 import Header from "../models/HeaderModel.js";
+import { checkResourceExists } from "../utils/checkResourceExists.js";
 
 export const headerController = {
-    index: async (req, res) => {
+    index: async (_req, res, next) => {
         try {
-            const header = await Header.findAll();
-            res.json(header);
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({
-                error: "An error occurred while querying the database",
-            });
+            res.json(await Header.findAll());
+        } catch (err) {
+            next(err);
         }
     },
-    showHeader: async (req, res) => {
+
+    showHeader: async (req, res, next) => {
         try {
-            const header = await Header.findByPk(req.params.id);
-            if (header) {
-                res.json(header);
-            } else {
-                res.status(404).json({ error: "Header not found" });
-            }
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({
-                error: "An error occurred while querying the database",
-            });
+            res.json(await checkResourceExists(Header, req.params.id));
+        } catch (err) {
+            next(err);
         }
     },
-    create: async (req, res) => {
+
+    create: async (req, res, next) => {
         try {
-            const header = await Header.create(req.body);
-            res.status(201).json(header);
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({
-                error: "An error occurred while creating the header",
-            });
+            res.status(201).json(await Header.create(req.body));
+        } catch (err) {
+            next(err);
         }
     },
-    update: async (req, res) => {
+
+    update: async (req, res, next) => {
         try {
-            const header = await Header.findByPk(req.params.id);
-            if (header) {
-                await header.update(req.body);
-                res.json(header);
-            } else {
-                res.status(404).json({ error: "header not found" });
-            }
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({
-                error: "An error occurred while updating the header",
-            });
+            const header = await checkResourceExists(Header, req.params.id);
+            await header.update(req.body);
+            res.json({ message: "Update succeeded" });
+        } catch (err) {
+            next(err);
         }
     },
-    delete: async (req, res) => {
+
+    delete: async (req, res, next) => {
         try {
-            const header = await Header.findByPk(req.params.id);
-            if (header) {
-                await header.destroy();
-                res.json({ message: "Header deleted successfully" });
-            } else {
-                res.status(404).json({ error: "Header not found" });
-            }
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({
-                error: "An error occurred while deleting the header",
-            });
+            const header = await checkResourceExists(Header, req.params.id);
+            await header.destroy();
+            res.json({ message: "Deletion succeeded" });
+        } catch (err) {
+            next(err);
         }
     },
 };
