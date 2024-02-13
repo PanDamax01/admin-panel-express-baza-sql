@@ -1,73 +1,48 @@
 import Classroom from "../models/ClassroomModel.js";
+import { checkResourceExists } from "../utils/checkResourceExists.js";
 
 export const classroomController = {
-    index: async (req, res) => {
+    index: async (_req, res, next) => {
         try {
-            const classrooms = await Classroom.findAll();
-            res.json(classrooms);
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({
-                error: "An error occurred while querying the database",
-            });
+            res.json(await Classroom.findAll());
+        } catch (err) {
+            next(err);
         }
     },
-    showClassroom: async (req, res) => {
+
+    showClassroom: async (req, res, next) => {
         try {
-            const classroom = await Classroom.findByPk(req.params.id);
-            if (classroom) {
-                res.json(classroom);
-            } else {
-                res.status(404).json({ error: "Classroom not found" });
-            }
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({
-                error: "An error occurred while querying the database",
-            });
+            res.json(await checkResourceExists(Classroom, req.params.id));
+        } catch (err) {
+            next(err);
         }
     },
-    create: async (req, res) => {
+
+    create: async (req, res, next) => {
         try {
-            const classroom = await Classroom.create(req.body);
-            res.status(201).json(classroom);
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({
-                error: "An error occurred while creating the classroom",
-            });
+            res.status(201).json(await Classroom.create(req.body));
+        } catch (err) {
+            next(err);
         }
     },
-    update: async (req, res) => {
+
+    update: async (req, res, next) => {
         try {
-            const classroom = await Classroom.findByPk(req.params.id);
-            if (classroom) {
-                await classroom.update(req.body);
-                res.json(classroom);
-            } else {
-                res.status(404).json({ error: "Classroomt not found" });
-            }
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({
-                error: "An error occurred while updating the Classroom",
-            });
+            const header = await checkResourceExists(Classroom, req.params.id);
+            await header.update(req.body);
+            res.json({ message: "Update succeeded" });
+        } catch (err) {
+            next(err);
         }
     },
-    delete: async (req, res) => {
+
+    delete: async (req, res, next) => {
         try {
-            const classroom = await Classroom.findByPk(req.params.id);
-            if (classroom) {
-                await classroom.destroy();
-                res.json({ message: "Classroom deleted successfully" });
-            } else {
-                res.status(404).json({ error: "Classroom not found" });
-            }
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({
-                error: "An error occurred while deleting the classroom",
-            });
+            const header = await checkResourceExists(Classroom, req.params.id);
+            await header.destroy();
+            res.json({ message: "Deletion succeeded" });
+        } catch (err) {
+            next(err);
         }
     },
 };

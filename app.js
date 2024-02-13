@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import db from "./db.js";
 import { appConfig } from "./config/config.js";
+import ErrorHandler from "./middlewares/ErrorHandler.js";
 import replacementRouter from "./router/replacementRouter.js";
 import classroomRouter from "./router/classroomRouter.js";
 import headerRouter from "./router/headerRouter.js";
@@ -25,6 +26,7 @@ app.use("/replacements", replacementRouter);
 app.use("/classrooms", classroomRouter);
 app.use("/headers", headerRouter);
 
+app.use(ErrorHandler);
 app.listen(appConfig.port, () => {
     console.log(`Serwer działa na http://localhost:${appConfig.port}`);
 });
