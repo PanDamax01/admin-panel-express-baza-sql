@@ -28,8 +28,11 @@ export const classroomController = {
 
     update: async (req, res, next) => {
         try {
-            const header = await checkResourceExists(Classroom, req.params.id);
-            await header.update(req.body);
+            const classroom = await checkResourceExists(
+                Classroom,
+                req.params.id
+            );
+            await classroom.update(req.body);
             res.json({ message: "Update succeeded" });
         } catch (err) {
             next(err);
@@ -38,8 +41,11 @@ export const classroomController = {
 
     delete: async (req, res, next) => {
         try {
-            const header = await checkResourceExists(Classroom, req.params.id);
-            await header.destroy();
+            const classroom = await checkResourceExists(
+                Classroom,
+                req.params.id
+            );
+            await classroom.destroy();
             res.json({ message: "Deletion succeeded" });
         } catch (err) {
             next(err);
