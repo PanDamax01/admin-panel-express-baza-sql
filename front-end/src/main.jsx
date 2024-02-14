@@ -9,6 +9,8 @@ import { LoginPage } from './views/LoginPage/LoginPage.jsx'
 import { Layout } from './components/Layout/Layout.jsx'
 import { HeaderPage } from './views/HeaderPage/HeaderPage.jsx'
 import { ReplacementsPage } from './views/ReplacementsPage/ReplacementsPage.jsx'
+import { replacementsLoader } from './api/loaders/replacementsLoader.js'
+import { headerLoader } from './api/loaders/headerLoader.js'
 
 const router = createBrowserRouter([
 	{
@@ -30,10 +32,16 @@ const router = createBrowserRouter([
 			{
 				path: '/panel/naglowek',
 				element: <HeaderPage />,
+				loader: headerLoader
 			},
 			{
 				path: '/panel/zastepstwa',
 				element: <ReplacementsPage />,
+				loader: replacementsLoader
+			},
+			{
+				path: '/panel/slider',
+				element: <p>slider</p>,
 			},
 		],
 	},

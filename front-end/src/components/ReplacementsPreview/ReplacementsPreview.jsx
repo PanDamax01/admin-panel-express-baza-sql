@@ -4,7 +4,7 @@ import { REPLACEMENTS } from '../../constants/categories'
 import { Title } from '../Title/Title'
 import { FormTable } from '../FormTable/FormTable'
 
-export function ReplacementsPreview() {
+export function ReplacementsPreview({ replacementsData }) {
 	return (
 		<>
 			<Title>Wygląd</Title>
@@ -20,26 +20,17 @@ export function ReplacementsPreview() {
 					</thead>
 
 					<tbody>
-						{/* {replacement.map((el) => (
-							<tr key={el.id}>
+						{replacementsData.map((el) => (
+							<tr key={el.replacements_id}>
 								<td>{el.lesson}</td>
 								<td>{el.teacher}</td>
 								<td>{el.branch}</td>
 								<td>{el.subject}</td>
 								<td>{el.room}</td>
-								<td>{el.replacement}</td>
-								<td>{el.data}</td>
+								<td>{el.deputy}</td>
+								<td>{el.date}</td>
 							</tr>
-						))} */}
-                        <tr>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
+						))}
 					</tbody>
 				</FormTable>
 			</div>

@@ -5,7 +5,7 @@ import { Hint } from '../Hint/Hint'
 import { Title } from '../Title/Title'
 import styles from './HeaderForm.module.scss'
 
-export function HeaderForm() {
+export function HeaderForm({ headerData: { img_school_logo, bell } }) {
 	return (
 		<form className={styles.form}>
 			<Title>Edycja</Title>
@@ -17,7 +17,7 @@ export function HeaderForm() {
 					type='text'
 					id='logo'
 					name='logo'
-					placeholder='pusty'
+					placeholder={img_school_logo ? img_school_logo : 'błąd'}
 				/>
 			</FormBox>
 
@@ -28,7 +28,7 @@ export function HeaderForm() {
 					type='text'
 					id='bell'
 					name='bell'
-					placeholder='pusty'
+					placeholder={bell}
 				/>
                 <Hint>*Wpisz słowo godzina, a powróci do originału.</Hint>
 			</FormBox>
