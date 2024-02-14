@@ -7,6 +7,7 @@ import replacementRouter from "./router/replacementRouter.js";
 import classroomRouter from "./router/classroomRouter.js";
 import headerRouter from "./router/headerRouter.js";
 import informationRouter from "./router/informationRouter.js";
+import sliderRouter from "./router/sliderRouter.js";
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use("/replacements", replacementRouter);
 app.use("/classrooms", classroomRouter);
 app.use("/headers", headerRouter);
 app.use("/informations", informationRouter);
+app.use("/sliders", sliderRouter);
 
 app.use(ErrorHandler);
 app.listen(appConfig.port, () => {
