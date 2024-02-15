@@ -9,6 +9,7 @@ import headerRouter from "./router/headerRouter.js";
 import informationRouter from "./router/informationRouter.js";
 import sliderRouter from "./router/sliderRouter.js";
 import userRouter from "./router/userRouter.js";
+import hiddenSectionRouter from "./router/hiddenSectionRouter.js";
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use("/headers", headerRouter);
 app.use("/informations", informationRouter);
 app.use("/sliders", sliderRouter);
 app.use("/users", userRouter);
+app.use("/hidden-sections", hiddenSectionRouter);
 
 app.use(ErrorHandler);
 app.listen(appConfig.port, () => {
