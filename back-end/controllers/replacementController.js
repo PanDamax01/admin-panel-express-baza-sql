@@ -33,7 +33,6 @@ export const replacementController = {
                 req.params.id
             );
             await replacement.update(req.body);
-            console.log(replacement);
             res.json({ message: "Update succeeded" });
         } catch (err) {
             next(err);
