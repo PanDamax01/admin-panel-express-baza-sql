@@ -1,7 +1,12 @@
-.add {
-	margin: 1.4em 0 0.6em;
-	padding: 0.6em 1.8em;
-	color: var(--bg);
-	background-color: var(--textSoft);
-	font-weight: bold;
+.wrapper {
+    margin: 0 auto;
+	width: 60vw;
+	overflow-x: auto;
+}
+
+@media (min-width: 768px) {
+	.wrapper {
+		width: 100%;
+		max-width: 1007px;
+	}
 }

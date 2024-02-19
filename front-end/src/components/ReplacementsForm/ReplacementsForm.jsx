@@ -2,6 +2,7 @@ import styles from './ReplacementsForm.module.scss'
 
 import { FormRows } from '../FormRows/FormRows'
 import { Title } from '../Title/Title'
+import { FormButtonAddRow } from '../FormButtonAddRow/FormButtonAddRow'
 
 export function ReplacementsForm({ replacementsData }) {
 	return (
@@ -9,11 +10,11 @@ export function ReplacementsForm({ replacementsData }) {
 			<Title>Edycja</Title>
 			{/* <Checkbox hidden={hidden.hideReplacement} type='hideReplacement' /> */}
 
-			<form>
-				<button className={styles.add}>Dodaj wiersz</button>
-			</form>
+			<div className={styles.wrapper}>
+				<FormButtonAddRow>Dodaj kolejny wiersz</FormButtonAddRow>
 
-			<FormRows replacementsData={replacementsData} />
+				<FormRows replacementsData={replacementsData} />
+			</div>
 		</>
 	)
 }

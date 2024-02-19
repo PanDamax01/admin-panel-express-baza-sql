@@ -47,7 +47,7 @@ export const CATEGORIES = [
 		list: [
 			{
 				title: 'Użytkownicy',
-				path: '/panel/użytkownicy',
+				path: '/panel/uzytkownicy',
 				icon: iconUsers,
 			},
 			{
@@ -63,9 +63,10 @@ export const NAME_CONVERSION = {
 	naglowek: 'nagłówek',
 	zastepstwa: 'zastępstwa',
 	ogloszenia: 'ogłoszenia',
-	użytkownicy: 'użytkownicy',
+	uzytkownicy: 'użytkownicy',
 	slider: 'slider',
 	panel: 'panel',
+	sale: 'sale',
 	ustawienia: 'ustawienia'
 }
 

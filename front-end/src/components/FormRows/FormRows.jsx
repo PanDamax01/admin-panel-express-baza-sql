@@ -18,7 +18,7 @@ export function FormRows({ replacementsData }) {
 		<>
 			{replacementsData.map((input, index) => (
 				<div key={input.replacements_id} className={styles.container}>
-					<form className={styles.form}>
+					<form key={input.replacements_id} className={styles.form}>
 						<input type='hidden' value={input.replacements_id} name='id' />
 
 						<FormLabel id={`lesson${input.replacements_id}`}>
