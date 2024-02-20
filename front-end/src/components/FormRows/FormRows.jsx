@@ -1,37 +1,30 @@
-import styles from "./FormRows.module.scss";
-import { BACK_END_URL } from "../../constants/api";
-import { FormLabel } from "../FormLabel/FormLabel";
-import { Form } from "react-router-dom";
+import styles from './FormRows.module.scss';
+import { FormLabel } from '../FormLabel/FormLabel';
+import { Form } from 'react-router-dom';
+import { fetchData } from '../../api/fetchData/fetchData';
 
 const inputFields = [
-    { className: `${styles.input} ${styles.short}`, key: 1, name: "lesson" },
-    { className: `${styles.input} ${styles.long}`, key: 2, name: "teacher" },
-    { className: `${styles.input} ${styles.mid}`, key: 3, name: "branch" },
-    { className: `${styles.input} ${styles.long}`, key: 4, name: "subject" },
-    { className: `${styles.input} ${styles.mid}`, key: 5, name: "room" },
-    { className: `${styles.input} ${styles.long}`, key: 6, name: "deputy" },
-    { className: `${styles.input} ${styles.long}`, key: 7, name: "date" },
+    { className: `${styles.input} ${styles.short}`, key: 1, name: 'lesson' },
+    { className: `${styles.input} ${styles.long}`, key: 2, name: 'teacher' },
+    { className: `${styles.input} ${styles.mid}`, key: 3, name: 'branch' },
+    { className: `${styles.input} ${styles.long}`, key: 4, name: 'subject' },
+    { className: `${styles.input} ${styles.mid}`, key: 5, name: 'room' },
+    { className: `${styles.input} ${styles.long}`, key: 6, name: 'deputy' },
+    { className: `${styles.input} ${styles.long}`, key: 7, name: 'date' },
 ];
 
-export async function updatedReplacement(args) {
-    const data = Object.fromEntries(await args.request.formData());
+export async function actionsReplacement({ request }) {
+    const data = Object.fromEntries(await request.formData());
 
-    try {
-        const response = await fetch(
-            `${BACK_END_URL}/replacements/${data.id}`,
-            {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            }
-        );
-
-        const replacement = await response.json();
-        return replacement;
-    } catch (error) {
-        console.log(error);
+    switch (request.method) {
+        case 'PUT':
+            return await fetchData('PUT', data, 'replacements');
+        case 'DELETE':
+            return await fetchData('DELETE', data, 'replacements');
+        default:
+            throw new Response('The request method is not supported', {
+                status: 405,
+            });
     }
 }
 
@@ -42,13 +35,13 @@ export function FormRows({ replacementsData }) {
                 <div key={input.replacements_id} className={styles.container}>
                     <Form
                         className={styles.form}
-                        method="PUT"
-                        action="/panel/zastepstwa"
+                        method='PUT'
+                        action='/panel/zastepstwa'
                     >
                         <input
-                            type="hidden"
+                            type='hidden'
                             value={input.replacements_id}
-                            name="id"
+                            name='id'
                         />
 
                         <FormLabel id={`lesson${input.replacements_id}`}>
@@ -64,7 +57,7 @@ export function FormRows({ replacementsData }) {
                                     placeholder={input[el.name]}
                                     defaultValue={input[el.name]}
                                     key={el.key}
-                                    type="text"
+                                    type='text'
                                 />
                             ))}
                         </div>
@@ -72,14 +65,18 @@ export function FormRows({ replacementsData }) {
                         <button className={styles.update}>Aktualizuj</button>
                     </Form>
 
-                    <form className={styles.form}>
+                    <Form
+                        className={styles.form}
+                        method='DELETE'
+                        action='/panel/zastepstwa'
+                    >
                         <input
-                            type="hidden"
+                            type='hidden'
                             value={input.replacements_id}
-                            name="id"
+                            name='id'
                         />
                         <button className={styles.delete}>Usuń</button>
-                    </form>
+                    </Form>
                 </div>
             ))}
         </>
