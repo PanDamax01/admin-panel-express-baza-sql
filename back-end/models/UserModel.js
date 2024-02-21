@@ -1,7 +1,21 @@
 import { DataTypes, Model } from "sequelize";
 import db from "../db.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { config } from "dotenv";
 
-class User extends Model {}
+config();
+
+class User extends Model {
+    generateAuthToken() {
+        const token = jwt.sign(
+            { user_id: this.user_id, login: this.login, admin: this.admin },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+        );
+        return token;
+    }
+}
 
 User.init(
     {
@@ -35,6 +49,14 @@ User.init(
         password: {
             type: DataTypes.TEXT,
             allowNull: false,
+            get() {
+                return () => this.getDataValue("password");
+            },
+            set(value) {
+                const salt = bcrypt.genSaltSync(10);
+                const hashedPassword = bcrypt.hashSync(value, salt);
+                this.setDataValue("password", hashedPassword);
+            },
         },
     },
     {
