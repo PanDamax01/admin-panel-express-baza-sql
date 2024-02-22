@@ -12,6 +12,7 @@ import { ReplacementsPage } from './views/ReplacementsPage/ReplacementsPage.jsx'
 import { replacementsLoader } from './api/loaders/replacementsLoader.js';
 import { headerLoader } from './api/loaders/headerLoader.js';
 import { actionsReplacement } from './components/FormRows/FormRows.jsx';
+import { RegistrationForm } from './components/RegistrationForm/RegistrationForm.jsx';
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: <LoginPage />,
+    },
+    {
+        path: '/registration',
+        element: <RegistrationForm />,
     },
     {
         path: '/panel',
