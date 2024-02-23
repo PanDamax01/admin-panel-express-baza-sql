@@ -16,6 +16,7 @@ import {
     registration,
     RegistrationForm,
 } from './components/RegistrationForm/RegistrationForm.jsx';
+import { login } from './components/LoginForm/LoginForm.jsx';
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/login',
+        action: login,
         element: <LoginPage />,
     },
     {
