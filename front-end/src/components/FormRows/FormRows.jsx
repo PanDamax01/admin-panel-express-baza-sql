@@ -15,7 +15,6 @@ const inputFields = [
 
 export async function actionsReplacement({ request }) {
     const data = Object.fromEntries(await request.formData());
-    console.log(data);
 
     switch (request.method) {
         case 'POST':
