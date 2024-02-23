@@ -4,6 +4,14 @@ import PasswordIcon from '../../assets/icon-password.png';
 
 import { useState } from 'react';
 import { FullWidthButton } from '../FullWidthButton/FullWidthButton';
+import { Form } from 'react-router-dom';
+import { fetchData } from '../../api/fetchData/fetchData';
+
+export async function registration({ request }) {
+    const data = Object.fromEntries(await request.formData());
+
+    return await fetchData('POST', data, 'users');
+}
 
 export function RegistrationForm() {
     const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +26,7 @@ export function RegistrationForm() {
             <div className={styles.content}>
                 <h1 className={styles.title}>Rejestracja</h1>
 
-                <form>
+                <Form method='POST' action='/registration'>
                     <div className={styles.box}>
                         <input
                             className={styles.input}
@@ -165,7 +173,7 @@ export function RegistrationForm() {
                     </div>
 
                     <FullWidthButton>Zarejestruj się</FullWidthButton>
-                </form>
+                </Form>
             </div>
         </div>
     );
