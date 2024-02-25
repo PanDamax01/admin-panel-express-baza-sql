@@ -4,9 +4,10 @@ import { Navbar } from '../Navbar/Navbar'
 import { Sidebar } from '../Sidebar/Sidebar'
 import { Footer } from '../Footer/Footer'
 import { Outlet, useNavigation } from 'react-router-dom'
+import { Loading } from '../Loading/Loading'
 
 export function Layout() {
-	const navigation = useNavigation()
+	const { state } = useNavigation()
 
 	return (
 		<div className={styles.container}>
@@ -15,7 +16,7 @@ export function Layout() {
 			</div>
 			<div className={styles.content}>
 				<Navbar />
-				{navigation.state === 'loading' && <p>ładowanie</p>}
+				{(state === 'submitting' || state === 'loading') && <Loading />}
 				<Outlet />
 				<Footer />
 			</div>
