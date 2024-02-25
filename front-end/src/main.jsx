@@ -5,14 +5,15 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { LoginPage } from './views/LoginPage/LoginPage.jsx'
 import { Layout } from './components/Layout/Layout.jsx'
+import { LoginPage } from './views/LoginPage/LoginPage.jsx'
 import { HeaderPage } from './views/HeaderPage/HeaderPage.jsx'
 import { ReplacementsPage } from './views/ReplacementsPage/ReplacementsPage.jsx'
 import { SliderPage } from './views/SliderPage/SliderPage.jsx'
 import { InformationsPage } from './views/InformationsPage/InformationsPage.jsx'
 import { ClassroomPage } from './views/ClassroomPage/ClassroomPage.jsx'
 import { UsersPage } from './views/UsersPage/UsersPage.jsx'
+import { NotFound } from './views/NotFound/NotFound.jsx'
 import { loader } from './api/loader.js'
 import { actionsReplacement } from './components/FormRows/FormRows.jsx'
 
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
 				loader: async () => loader('users')
 			},
 		],
+	},
+	{
+		path: '*',
+		element: <NotFound />,
 	},
 ])
 
