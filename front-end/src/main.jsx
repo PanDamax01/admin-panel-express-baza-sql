@@ -21,6 +21,7 @@ import { NotFound } from './views/NotFound/NotFound.jsx'
 import { loader } from './api/loader.js'
 import { actionsReplacement } from './components/FormRows/FormRows.jsx'
 import { actionsHeader } from './components/HeaderForm/HeaderForm.jsx'
+import { Error } from './components/Error/Error.jsx'
 
 const router = createBrowserRouter([
 	{
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
 	{
 		path: '/panel',
 		element: <Layout />,
+		errorElement: <Error />,
 		children: [
 			{
 				path: '',
