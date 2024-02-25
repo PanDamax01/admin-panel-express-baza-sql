@@ -5,6 +5,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+//page
 import { Layout } from './components/Layout/Layout.jsx'
 import { LoginPage } from './views/LoginPage/LoginPage.jsx'
 import { HeaderPage } from './views/HeaderPage/HeaderPage.jsx'
@@ -14,8 +16,11 @@ import { InformationsPage } from './views/InformationsPage/InformationsPage.jsx'
 import { ClassroomPage } from './views/ClassroomPage/ClassroomPage.jsx'
 import { UsersPage } from './views/UsersPage/UsersPage.jsx'
 import { NotFound } from './views/NotFound/NotFound.jsx'
+
+//actions
 import { loader } from './api/loader.js'
 import { actionsReplacement } from './components/FormRows/FormRows.jsx'
+import { actionsHeader } from './components/HeaderForm/HeaderForm.jsx'
 
 const router = createBrowserRouter([
 	{
@@ -37,6 +42,7 @@ const router = createBrowserRouter([
 			{
 				path: '/panel/naglowek',
 				element: <HeaderPage />,
+				action: actionsHeader,
 				loader: async () => loader('headers')
 			},
 			{

@@ -1,13 +1,35 @@
+import styles from './HeaderForm.module.scss'
+
 import { FormBox } from '../FormBox/FormBox'
 import { FormLabel } from '../FormLabel/FormLabel'
 import { FullWidthButton } from '../FullWidthButton/FullWidthButton'
 import { Hint } from '../Hint/Hint'
 import { Title } from '../Title/Title'
-import styles from './HeaderForm.module.scss'
+import { Form } from 'react-router-dom'
+import { fetchData } from '../../api/fetchData'
+
+export async function actionsHeader({ request }) {
+	const data = await request.formData()
+
+	const submission = {
+		id: 1,
+		img_school_logo: data.get('logo'),
+		bell: data.get('bell')
+	}
+
+	Object.keys(submission).forEach(
+		(key) =>
+			(submission[key] === '' || undefined) && delete submission[key]
+	)
+
+	if (submission.img_school_logo === '' && submission.bell === '') return null
+	
+	return await fetchData('PUT', submission, 'headers')
+}
 
 export function HeaderForm({ headerData: { img_school_logo, bell } }) {
 	return (
-		<form className={styles.form}>
+		<Form method='POST' action='/panel/naglowek' className={styles.form}>
 			<Title>Edycja</Title>
 
 			<FormBox>
@@ -30,10 +52,10 @@ export function HeaderForm({ headerData: { img_school_logo, bell } }) {
 					name='bell'
 					placeholder={bell}
 				/>
-                <Hint>*Wpisz słowo godzina, a powróci do originału.</Hint>
+				<Hint>*Wpisz słowo godzina, a powróci do originału.</Hint>
 			</FormBox>
 
-            <FullWidthButton>Aktualizuj</FullWidthButton>
-		</form>
+			<FullWidthButton>Aktualizuj</FullWidthButton>
+		</Form>
 	)
 }

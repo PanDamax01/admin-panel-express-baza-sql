@@ -1,9 +1,9 @@
-import { BACK_END_URL } from "../constants/api";
+import { BACK_END_URL } from "../constants/api"
 
 export const fetchData = async (method, data, endpoint) => {
-    let endpointURL = `${BACK_END_URL}/${endpoint}`;
+    let endpointURL = `${BACK_END_URL}/${endpoint}`
     if (method !== 'POST') {
-        endpointURL += `/${data.id}`;
+        endpointURL += `/${data.id}`
     }
 
     const options = {
@@ -14,19 +14,19 @@ export const fetchData = async (method, data, endpoint) => {
     };
 
     if (method !== 'DELETE') {
-        options.body = JSON.stringify(data);
+        options.body = JSON.stringify(data)
     }
 
     try {
-        const response = await fetch(endpointURL, options);
+        const response = await fetch(endpointURL, options)
         if (!response.ok) {
             throw new Error(
                 `HTTP error! status: ${response.status}, method: ${method}, url: ${endpointURL}`
             );
         }
-        const result = await response.json();
-        return result;
+        const result = await response.json()
+        return result
     } catch (error) {
-        console.log(error);
+        console.log(error)
     }
 }

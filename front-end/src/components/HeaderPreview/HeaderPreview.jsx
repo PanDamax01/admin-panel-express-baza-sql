@@ -4,7 +4,6 @@ import schoolLogo from '../../assets/logo-school.png'
 import { Title } from '../Title/Title'
 
 export function HeaderPreview({ headerData: { img_school_logo, bell } }) {
-
 	return (
 		<>
 			<Title>Wygląd</Title>
@@ -17,7 +16,9 @@ export function HeaderPreview({ headerData: { img_school_logo, bell } }) {
 					height='90'
 					className={styles.logoScholl}
 				/>
-				<p className={styles.bell}>{!bell === 'godzina' ? bell : 'Do końca leckji $ - $$min'}</p>
+				<p className={styles.bell}>
+					{bell === 'godzina' ? 'Do końca leckji $ - $$min' : bell}
+				</p>
 			</div>
 		</>
 	)
