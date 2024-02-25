@@ -9,16 +9,12 @@ import { LoginPage } from './views/LoginPage/LoginPage.jsx'
 import { Layout } from './components/Layout/Layout.jsx'
 import { HeaderPage } from './views/HeaderPage/HeaderPage.jsx'
 import { ReplacementsPage } from './views/ReplacementsPage/ReplacementsPage.jsx'
-import { replacementsLoader } from './api/loaders/replacementsLoader.js'
-import { headerLoader } from './api/loaders/headerLoader.js'
 import { SliderPage } from './views/SliderPage/SliderPage.jsx'
-import { slidersLoader } from './api/loaders/slidersLoader.js'
 import { InformationsPage } from './views/InformationsPage/InformationsPage.jsx'
-import { informationsLoader } from './api/loaders/informationsLoader.js'
 import { ClassroomPage } from './views/ClassroomPage/ClassroomPage.jsx'
-import { classroomsLoader } from './api/loaders/classroomLoader.js'
 import { UsersPage } from './views/UsersPage/UsersPage.jsx'
-import { usersLoader } from './api/loaders/usersLoader.js'
+import { loader } from './api/loader.js'
+import { actionsReplacement } from './components/FormRows/FormRows.jsx'
 
 const router = createBrowserRouter([
 	{
@@ -40,32 +36,33 @@ const router = createBrowserRouter([
 			{
 				path: '/panel/naglowek',
 				element: <HeaderPage />,
-				loader: headerLoader
+				loader: async () => loader('headers')
 			},
 			{
 				path: '/panel/zastepstwa',
 				element: <ReplacementsPage />,
-				loader: replacementsLoader
+				action: actionsReplacement,
+				loader: async () => loader('replacements')
 			},
 			{
 				path: '/panel/slider',
 				element: <SliderPage />,
-				loader: slidersLoader
+				loader: async () => loader('sliders')
 			},
 			{
 				path: '/panel/ogloszenia',
 				element: <InformationsPage />,
-				loader: informationsLoader
+				loader: async () => loader('informations')
 			},
 			{
 				path: '/panel/sale',
 				element: <ClassroomPage />,
-				loader: classroomsLoader
+				loader: async () => loader('classrooms')
 			},
 			{
 				path: '/panel/uzytkownicy',
 				element: <UsersPage />,
-				loader: usersLoader
+				loader: async () => loader('users')
 			},
 		],
 	},

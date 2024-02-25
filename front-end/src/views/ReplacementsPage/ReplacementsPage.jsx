@@ -8,8 +8,10 @@ export function ReplacementsPage() {
 
 	return (
 		<Wrapper>
-			<ReplacementsPreview replacementsData={replacementsData} />
-			<ReplacementsForm replacementsData={replacementsData} />
+			<>
+				<ReplacementsPreview replacementsData={replacementsData} />
+				<ReplacementsForm replacementsData={replacementsData} />
+			</>
 		</Wrapper>
 	)
 }

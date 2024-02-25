@@ -4,12 +4,12 @@ import { UsersTable } from '../../components/UsersTable/UsersTable'
 import { Wrapper } from '../../components/Wrapper/Wrapper'
 
 export function UsersPage() {
-    const usersData = useLoaderData()
+	const usersData = useLoaderData()
 
 	return (
 		<Wrapper>
 			<UsersOptions />
-			<UsersTable usersData={usersData}/>
+			<UsersTable usersData={usersData} />
 			{/* <Pagination count={count} /> */}
 		</Wrapper>
 	)

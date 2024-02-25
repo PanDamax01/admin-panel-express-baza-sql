@@ -7,10 +7,16 @@ import { FullWidthButton } from '../FullWidthButton/FullWidthButton'
 
 export function LoginForm() {
 	const [showPassword, setShowPassword] = useState(false)
+	const [password, setPassword] = useState('')
 
 	function handleShownPassword(e) {
 		e.preventDefault()
+		if (password.length === 0 && showPassword === false) return
 		setShowPassword(!showPassword)
+	}
+
+	function handlePassword(e) {
+		setPassword(e.target.value)
 	}
 
 	return (
@@ -40,6 +46,8 @@ export function LoginForm() {
 							type={showPassword ? 'text' : 'password'}
 							name='password'
 							id='password'
+							value={password}
+							onChange={handlePassword}
 							autoComplete='off'
 							required
 						/>
@@ -52,7 +60,7 @@ export function LoginForm() {
 							alt='Icon password'
 						/>
 						<button onClick={handleShownPassword} className={styles.eyes}>
-							👀
+							{showPassword ? '❌' : '👀'}
 						</button>
 					</div>
 

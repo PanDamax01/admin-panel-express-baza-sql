@@ -11,7 +11,9 @@ export function ReplacementsForm({ replacementsData }) {
 			{/* <Checkbox hidden={hidden.hideReplacement} type='hideReplacement' /> */}
 
 			<div className={styles.wrapper}>
-				<FormButtonAddRow>Dodaj kolejny wiersz</FormButtonAddRow>
+				<FormButtonAddRow method='POST' action='/panel/zastepstwa'>
+					Dodaj kolejny wiersz
+				</FormButtonAddRow>
 
 				<FormRows replacementsData={replacementsData} />
 			</div>
