@@ -30,7 +30,7 @@ export async function actionsHeader({ request }) {
 export function HeaderForm({ headerData: { img_school_logo, bell } }) {
 
 	return (
-		<Form method='POST' action='/panel/naglowek' className={styles.form}>
+		<Form method='PUT' action='/panel/naglowek' className={styles.form}>
 			<Title>Edycja</Title>
 
 			<FormBox>

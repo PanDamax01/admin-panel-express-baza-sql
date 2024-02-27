@@ -23,6 +23,7 @@ import { actionsReplacement } from './components/FormRows/FormRows.jsx'
 import { actionsHeader } from './components/HeaderForm/HeaderForm.jsx'
 import { Error } from './components/Error/Error.jsx'
 import { actionsSlider } from './components/SliderForm/SliderForm.jsx'
+import { actionsInformations } from './components/InformationsForm/InformationsForm.jsx'
 
 const router = createBrowserRouter([
 	{
@@ -63,6 +64,7 @@ const router = createBrowserRouter([
 			{
 				path: '/panel/ogloszenia',
 				element: <InformationsPage />,
+				action: actionsInformations,
 				loader: async () => loader('informations')
 			},
 			{
