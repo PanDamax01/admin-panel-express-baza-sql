@@ -22,6 +22,7 @@ import { loader } from './api/loader.js'
 import { actionsReplacement } from './components/FormRows/FormRows.jsx'
 import { actionsHeader } from './components/HeaderForm/HeaderForm.jsx'
 import { Error } from './components/Error/Error.jsx'
+import { actionsSlider } from './components/SliderForm/SliderForm.jsx'
 
 const router = createBrowserRouter([
 	{
@@ -56,6 +57,7 @@ const router = createBrowserRouter([
 			{
 				path: '/panel/slider',
 				element: <SliderPage />,
+				action: actionsSlider,
 				loader: async () => loader('sliders')
 			},
 			{
