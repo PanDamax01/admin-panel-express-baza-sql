@@ -32,7 +32,7 @@ export function SliderForm({ slidersData }) {
 				{/* <Checkbox hidden={hidden.hideSlider} type='hideSlider' /> */}
 
 				<FormButtonAddRow method='POST' action='/panel/slider'>
-					Dodaj kolejny wiersz
+					Dodaj kolejne zdjęcie
 				</FormButtonAddRow>
 
 				{slidersData.map((img, index) => (

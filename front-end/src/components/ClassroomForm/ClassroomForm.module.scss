@@ -1,5 +1,11 @@
+.wrapper {
+	margin: 0 auto;
+	width: 60vw;
+	overflow-x: auto;
+}
+
 .container {
-    margin: 1em 0;
+	margin: 1em 0;
 }
 
 .form {
@@ -11,10 +17,9 @@
 	border-bottom: 1px solid #eee;
 }
 
-
 .input {
 	display: inline-block;
-	padding: .8em;
+	padding: 0.8em;
 	width: 100%;
 	color: var(--text);
 	background-color: var(--bg);
@@ -27,10 +32,10 @@
 	padding: 0.4em 1em;
 	color: var(--text);
 	background-color: rgb(151, 0, 0);
-	transition: background-color .3s;
+	transition: background-color 0.3s;
 	font-weight: bold;
-	
-	&:hover{
+
+	&:hover {
 		background-color: rgb(127, 6, 6);
 	}
 }
@@ -38,16 +43,9 @@
 .update {
 	background-color: teal;
 
-	&:hover{
+	&:hover {
 		background-color: rgb(5, 106, 106);
 	}
-}
-
-
-.wrapper {
-    margin: 0 auto;
-	width: 60vw;
-	overflow-x: auto;
 }
 
 @media (min-width: 768px) {

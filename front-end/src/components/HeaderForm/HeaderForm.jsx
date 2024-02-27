@@ -40,7 +40,8 @@ export function HeaderForm({ headerData: { img_school_logo, bell } }) {
 					type='text'
 					id='logo'
 					name='logo'
-					placeholder={img_school_logo ? img_school_logo : 'błąd'}
+					defaultValue={img_school_logo}
+					placeholder={img_school_logo}
 				/>
 			</FormBox>
 
@@ -51,6 +52,7 @@ export function HeaderForm({ headerData: { img_school_logo, bell } }) {
 					type='text'
 					id='bell'
 					name='bell'
+					defaultValue={bell}
 					placeholder={bell}
 				/>
 				<Hint>*Wpisz słowo godzina, a powróci do originału.</Hint>
