@@ -1,5 +1,8 @@
 .table {
-	width: 100%;
+	// width: 100%;
+    width: 90%;
+    margin: 0 auto;
+    overflow-x: scroll;
 }
 
 .table td {
@@ -13,6 +16,7 @@
 .buttonsBox {
 	display: flex;
 	gap: 0.8em;
+    width: max-content;
 }
 
 .button {

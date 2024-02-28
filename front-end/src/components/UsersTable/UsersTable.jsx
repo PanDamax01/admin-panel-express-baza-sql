@@ -1,20 +1,17 @@
 import styles from './UsersTable.module.scss'
 
-import AvatarIcon from '../../assets/noavatar.png'
+import { USER_NAME_TABLE } from '../../constants/categories'
 import { Link } from 'react-router-dom'
+import AvatarIcon from '../../assets/noavatar.png'
 
 export function UsersTable({ usersData }) {
 	return (
 		<table className={styles.table}>
 			<thead>
 				<tr>
-					<td>Avatar</td>
-					<td>Imię</td>
-					<td>Nazwisko</td>
-					<td>Login</td>
-					<td>Email</td>
-					<td>Admin</td>
-					<td>Akcje</td>
+					{USER_NAME_TABLE.map((item) => (
+						<td key={item.key}>{item.title}</td>
+					))}
 				</tr>
 			</thead>
 
@@ -41,7 +38,7 @@ export function UsersTable({ usersData }) {
 								<div className={styles.buttonsBox}>
 									<Link to={`/panel/uzytkownicy/${user.user_id}`}>
 										<button className={`${styles.button} ${styles.view}`}>
-											Zobacz
+											Edytuj
 										</button>
 									</Link>
 									<form>

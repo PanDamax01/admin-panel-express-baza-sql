@@ -9,7 +9,6 @@ export function Search() {
 			
 			<input
 				className={styles.input}
-				onChange=''
 				type='text'
 				placeholder=''
 				name='search'

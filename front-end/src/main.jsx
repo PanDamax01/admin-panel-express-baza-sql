@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 //page
 import { Layout } from './components/Layout/Layout.jsx'
+import { LayoutUsers } from './components/LayoutUsers/LayoutUsers.jsx'
 import { LoginPage } from './views/LoginPage/LoginPage.jsx'
 import { HeaderPage } from './views/HeaderPage/HeaderPage.jsx'
 import { ReplacementsPage } from './views/ReplacementsPage/ReplacementsPage.jsx'
@@ -24,6 +25,7 @@ import { actionsHeader } from './components/HeaderForm/HeaderForm.jsx'
 import { Error } from './components/Error/Error.jsx'
 import { actionsSlider } from './components/SliderForm/SliderForm.jsx'
 import { actionsInformations } from './components/InformationsForm/InformationsForm.jsx'
+import { AddUserPage } from './views/AddUserPage/AddUserPage.jsx'
 
 const router = createBrowserRouter([
 	{
@@ -47,35 +49,49 @@ const router = createBrowserRouter([
 				path: '/panel/naglowek',
 				element: <HeaderPage />,
 				action: actionsHeader,
-				loader: async () => loader('headers')
+				loader: async () => loader('headers'),
 			},
 			{
 				path: '/panel/zastepstwa',
 				element: <ReplacementsPage />,
 				action: actionsReplacement,
-				loader: async () => loader('replacements')
+				loader: async () => loader('replacements'),
 			},
 			{
 				path: '/panel/slider',
 				element: <SliderPage />,
 				action: actionsSlider,
-				loader: async () => loader('sliders')
+				loader: async () => loader('sliders'),
 			},
 			{
 				path: '/panel/ogloszenia',
 				element: <InformationsPage />,
 				action: actionsInformations,
-				loader: async () => loader('informations')
+				loader: async () => loader('informations'),
 			},
 			{
 				path: '/panel/sale',
 				element: <ClassroomPage />,
-				loader: async () => loader('classrooms')
+				loader: async () => loader('classrooms'),
 			},
 			{
 				path: '/panel/uzytkownicy',
-				element: <UsersPage />,
-				loader: async () => loader('users')
+				element: <LayoutUsers />,
+				children: [
+					{
+						path: '',
+						element: <UsersPage />,
+						loader: async () => loader('users'),
+					},
+					{
+						path: '/panel/uzytkownicy/:userId',
+						element: <p>uzytkownik</p>,
+					},
+					{
+						path: '/panel/uzytkownicy/dodaj',
+						element: <AddUserPage />,
+					},
+				],
 			},
 		],
 	},

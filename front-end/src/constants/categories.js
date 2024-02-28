@@ -67,7 +67,8 @@ export const NAME_CONVERSION = {
 	slider: 'slider',
 	panel: 'panel',
 	sale: 'sale',
-	ustawienia: 'ustawienia'
+	ustawienia: 'ustawienia',
+	dodaj: 'dodaj użytkownika',
 }
 
 export const REPLACEMENTS = [
@@ -78,4 +79,14 @@ export const REPLACEMENTS = [
 	{ title: 'Sala', key: 4 },
 	{ title: 'Zastępca', key: 5 },
 	{ title: 'Okres', key: 6 },
+]
+
+export const USER_NAME_TABLE = [
+	{ title: 'Avatar', key: 0 },
+	{ title: 'Imię', key: 1 },
+	{ title: 'Nazwisko', key: 2 },
+	{ title: 'Login', key: 3 },
+	{ title: 'Email', key: 4 },
+	{ title: 'Admin', key: 5 },
+	{ title: 'Akcje', key: 6 },
 ]

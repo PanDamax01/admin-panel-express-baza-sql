@@ -8,7 +8,7 @@ export function UsersOptions() {
 		<div className={styles.container}>
 
 			<Search placeholder='Szukaj użytkownika...' />
-			<Link href='/panel/uzytkownicy/dodaj'>
+			<Link to='/panel/uzytkownicy/dodaj'>
 				<button className={styles.addButton}>Dodaj</button>
 			</Link>
             

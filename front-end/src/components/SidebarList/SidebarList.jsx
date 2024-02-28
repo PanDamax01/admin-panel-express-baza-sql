@@ -14,7 +14,9 @@ export function SidebarList() {
 					<span className={styles.cat}>{category.title}</span>
 
 					{category.list.map((item) => {
-						const isActive = pathname === item.path
+						
+						// const isActive = pathname === item.path
+						const isActive = pathname === item.path || (pathname.startsWith(item.path) && item.path !== '/panel')
 						
 						return (
 							<Link to={item.path} key={item.title}>
