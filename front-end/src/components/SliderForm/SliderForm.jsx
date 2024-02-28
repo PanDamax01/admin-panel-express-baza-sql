@@ -48,7 +48,7 @@ export function SliderForm({ slidersData }) {
 								className={styles.input}
 								name='img_slider'
 								id={`img${img.slider_id}`}
-								placeholder={img.img_slider}
+								placeholder={img.img_slider || 'Puste'}
 								defaultValue={img.img_slider}
 								type='text'
 							/>

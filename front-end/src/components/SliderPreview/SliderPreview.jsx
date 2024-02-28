@@ -13,7 +13,7 @@ export function SliderPreview({ slidersData }) {
 					<li key={img.slider_id} className={styles.card}>
 						<img
 							className={styles.img}
-							src={img.img_slider ? img.img_slider : AddImageIcon}
+							src={img.img_slider || AddImageIcon}
 							alt='Slider image'
 							width='230'
 							height='200'

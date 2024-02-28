@@ -17,6 +17,8 @@ import { InformationsPage } from './views/InformationsPage/InformationsPage.jsx'
 import { ClassroomPage } from './views/ClassroomPage/ClassroomPage.jsx'
 import { UsersPage } from './views/UsersPage/UsersPage.jsx'
 import { NotFound } from './views/NotFound/NotFound.jsx'
+import { AddUserPage } from './views/AddUserPage/AddUserPage.jsx'
+import { SingleUserPage } from './views/SingleUserPage/SingleUserPage.jsx'
 
 //actions
 import { loader } from './api/loader.js'
@@ -25,7 +27,6 @@ import { actionsHeader } from './components/HeaderForm/HeaderForm.jsx'
 import { Error } from './components/Error/Error.jsx'
 import { actionsSlider } from './components/SliderForm/SliderForm.jsx'
 import { actionsInformations } from './components/InformationsForm/InformationsForm.jsx'
-import { AddUserPage } from './views/AddUserPage/AddUserPage.jsx'
 
 const router = createBrowserRouter([
 	{
@@ -49,30 +50,30 @@ const router = createBrowserRouter([
 				path: '/panel/naglowek',
 				element: <HeaderPage />,
 				action: actionsHeader,
-				loader: async () => loader('headers'),
+				loader: () => loader('headers'),
 			},
 			{
 				path: '/panel/zastepstwa',
 				element: <ReplacementsPage />,
 				action: actionsReplacement,
-				loader: async () => loader('replacements'),
+				loader: () => loader('replacements'),
 			},
 			{
 				path: '/panel/slider',
 				element: <SliderPage />,
 				action: actionsSlider,
-				loader: async () => loader('sliders'),
+				loader: () => loader('sliders'),
 			},
 			{
 				path: '/panel/ogloszenia',
 				element: <InformationsPage />,
 				action: actionsInformations,
-				loader: async () => loader('informations'),
+				loader: () => loader('informations'),
 			},
 			{
 				path: '/panel/sale',
 				element: <ClassroomPage />,
-				loader: async () => loader('classrooms'),
+				loader: () => loader('classrooms'),
 			},
 			{
 				path: '/panel/uzytkownicy',
@@ -81,11 +82,12 @@ const router = createBrowserRouter([
 					{
 						path: '',
 						element: <UsersPage />,
-						loader: async () => loader('users'),
+						loader: () => loader('users'),
 					},
 					{
 						path: '/panel/uzytkownicy/:userId',
-						element: <p>uzytkownik</p>,
+						element: <SingleUserPage />,
+						loader: ({ params }) => loader(`users/${params.userId}`),
 					},
 					{
 						path: '/panel/uzytkownicy/dodaj',

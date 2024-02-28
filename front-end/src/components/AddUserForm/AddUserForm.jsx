@@ -1,6 +1,8 @@
-import { FullWidthButton } from '../FullWidthButton/FullWidthButton'
-import { UserBox } from '../UserBox/UserBox'
 import styles from './AddUserForm.module.scss'
+
+import { FullWidthButton } from '../FullWidthButton/FullWidthButton'
+import { SelectedBox } from '../SelectedBox/SelectedBox'
+import { UserBox } from '../UserBox/UserBox'
 
 export function AddUserForm() {
 	return (
@@ -9,7 +11,8 @@ export function AddUserForm() {
 				name='username'
 				autoComplete='given-name'
 				pattern='.{3,}'
-				type='text'>
+				type='text'
+				required>
 				Imię: <pre>(min. 3 znaki)*</pre>
 			</UserBox>
 
@@ -17,11 +20,17 @@ export function AddUserForm() {
 				name='surname'
 				autoComplete='family-name'
 				pattern='.{3,}'
-				type='text'>
+				type='text'
+				required>
 				Nazwisko: <pre>(min. 3 znaki)*</pre>
 			</UserBox>
 
-			<UserBox name='login' autoComplete='username' pattern='.{3,}' type='text'>
+			<UserBox
+				name='login'
+				autoComplete='username'
+				pattern='.{3,}'
+				type='text'
+				required>
 				Login: <pre>(min. 3 znaki)*</pre>
 			</UserBox>
 
@@ -29,11 +38,17 @@ export function AddUserForm() {
 				name='password'
 				autoComplete='new-password'
 				pattern='.{5,}'
-				type='password'>
+				type='password'
+				required>
 				Hasło: <pre>(min. 5 znaki)*</pre>
 			</UserBox>
 
-			<UserBox name='email' autoComplete='email' pattern='.{3,}' type='email'>
+			<UserBox
+				name='email'
+				autoComplete='email'
+				pattern='.{3,}'
+				type='email'
+				required>
 				Email:
 			</UserBox>
 
@@ -41,13 +56,7 @@ export function AddUserForm() {
 				Avatar:
 			</UserBox>
 
-			<div className={styles.selectedBox}>
-				<label htmlFor='isAdmin'>Admin:</label>
-				<select name='admin' id='isAdmin' defaultValue={0} required>
-					<option value={1}>Tak</option>
-					<option value={0}>Nie</option>
-				</select>
-			</div>
+			<SelectedBox />
 
 			<FullWidthButton>Wyślij</FullWidthButton>
 		</form>
