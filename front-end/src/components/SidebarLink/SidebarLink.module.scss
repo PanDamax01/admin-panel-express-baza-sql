@@ -14,7 +14,7 @@
 		top: 50%;
 		width: 3px;
 		height: 36px;
-		background-color: #5f9cfd;
+		background-color: var(--activeLabel);
 		opacity: 0;
 		transform: translateY(-50%);
 		transition: opacity 0.3s;
