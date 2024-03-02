@@ -4,13 +4,16 @@ import { ReplacementsForm } from '../../components/ReplacementsForm/Replacements
 import { useLoaderData } from 'react-router-dom'
 
 export function ReplacementsPage() {
-	const replacementsData = useLoaderData()
+	const { jsonData: replacementsData, hiddenSectionsData } = useLoaderData()
 
 	return (
 		<Wrapper>
 			<>
 				<ReplacementsPreview replacementsData={replacementsData} />
-				<ReplacementsForm replacementsData={replacementsData} />
+				<ReplacementsForm
+					replacementsData={replacementsData}
+					hiddenSectionsData={hiddenSectionsData}
+				/>
 			</>
 		</Wrapper>
 	)

@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 //page
 import { Layout } from './components/Layout/Layout.jsx'
 import { LayoutUsers } from './components/LayoutUsers/LayoutUsers.jsx'
+import { Loading } from './components/Loading/Loading.jsx'
 import { LoginPage } from './views/LoginPage/LoginPage.jsx'
 import { HeaderPage } from './views/HeaderPage/HeaderPage.jsx'
 import { ReplacementsPage } from './views/ReplacementsPage/ReplacementsPage.jsx'
@@ -22,6 +23,7 @@ import { SingleUserPage } from './views/SingleUserPage/SingleUserPage.jsx'
 
 //actions
 import { loader } from './api/loader.js'
+import { loaderDataAndHideSections } from './api/loadDataAndHideSections.js'
 import { actionsReplacement } from './components/FormRows/FormRows.jsx'
 import { actionsHeader } from './components/HeaderForm/HeaderForm.jsx'
 import { Error } from './components/Error/Error.jsx'
@@ -56,7 +58,7 @@ const router = createBrowserRouter([
 				path: '/panel/zastepstwa',
 				element: <ReplacementsPage />,
 				action: actionsReplacement,
-				loader: () => loader('replacements'),
+				loader: () => loaderDataAndHideSections('replacements'),
 			},
 			{
 				path: '/panel/slider',
@@ -105,6 +107,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-		<RouterProvider router={router}></RouterProvider>
+		<RouterProvider
+			router={router}
+			fallbackElement={<Loading />}></RouterProvider>
 	</React.StrictMode>
 )
