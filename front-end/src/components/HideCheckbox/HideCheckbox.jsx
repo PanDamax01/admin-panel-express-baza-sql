@@ -2,9 +2,11 @@ import styles from './HideCheckbox.module.scss'
 
 import { useState } from 'react'
 import { fetchData } from '../../api/fetchData'
+import { useNavigate } from 'react-router-dom'
 
 export function HideCheckbox({ hidden, name }) {
 	const [checked, setChecked] = useState(hidden)
+	const navigate = useNavigate()
 
 	const handleCheckboxChange = async () => {
 		setChecked(!checked)
@@ -17,7 +19,9 @@ export function HideCheckbox({ hidden, name }) {
 
 			return await fetchData('PUT', updateFields, 'hidden-sections')
 		} catch (error) {
-			console.error(`Error updating hidden section ${name}:` , error)
+			console.error(`Error updating hidden section ${name}:`, error)
+		} finally {
+			navigate(window.location.pathname)
 		}
 	}
 
@@ -31,7 +35,7 @@ export function HideCheckbox({ hidden, name }) {
 				id='hide'
 			/>
 
-			<label htmlFor='hide'>{checked ? 'Schowaj' : 'Pokaż'} element</label>
+			<label htmlFor='hide'>{checked ? 'Schowaj' : 'Pokaż'} sekcje</label>
 		</form>
 	)
 }

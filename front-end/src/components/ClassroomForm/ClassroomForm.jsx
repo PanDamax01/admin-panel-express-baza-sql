@@ -4,14 +4,18 @@ import { Title } from '../Title/Title'
 import { FormButtonAddRow } from '../FormButtonAddRow/FormButtonAddRow'
 import { FormLabel } from '../FormLabel/FormLabel'
 import { Form } from 'react-router-dom'
+import { HideCheckbox } from '../HideCheckbox/HideCheckbox'
 
-export function ClassroomForm({ classromsData }) {
+export function ClassroomForm({ classromsData, hiddenSectionsData }) {
 	return (
 		<>
 			<Title>Edycja</Title>
 
 			<div className={styles.wrapper}>
-				{/* <Checkbox hidden={hidden.hideClassroom} type='hideClassroom' /> */}
+				<HideCheckbox
+					name='classrooms'
+					hidden={hiddenSectionsData[0].classrooms}
+				/>
 
 				<FormButtonAddRow>Dodaj kolejny plan lekcji</FormButtonAddRow>
 
@@ -29,7 +33,7 @@ export function ClassroomForm({ classromsData }) {
 								name='html'
 								id={`file${file.classroom_id}`}
 								type='file'
-                                accept='text/plain, text/html'
+								accept='text/plain, text/html'
 							/>
 
 							<button className={styles.update}>Aktualizuj</button>

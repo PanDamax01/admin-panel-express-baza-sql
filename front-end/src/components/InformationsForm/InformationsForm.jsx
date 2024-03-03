@@ -7,6 +7,7 @@ import { FormBox } from '../FormBox/FormBox'
 import { FullWidthButton } from '../FullWidthButton/FullWidthButton'
 import { fetchData } from '../../api/fetchData'
 import { Form } from 'react-router-dom'
+import { HideCheckbox } from '../HideCheckbox/HideCheckbox'
 
 export async function actionsInformations({ request }) {
 	const data = await request.formData()
@@ -19,15 +20,15 @@ export async function actionsInformations({ request }) {
 	}
 
 	if (showPoster === 0) {
-        updateFields.text = data.get('text')
-    } else {
-        updateFields.img_information = data.get('poster')
-    }
+		updateFields.text = data.get('text')
+	} else {
+		updateFields.img_information = data.get('poster')
+	}
 
 	Object.keys(updateFields).forEach(
 		(key) => (updateFields[key] === '' || undefined) && delete updateFields[key]
 	)
-	
+
 	return await fetchData('PUT', updateFields, 'informations')
 }
 
@@ -35,13 +36,17 @@ export function InformationsForm({
 	informationsData,
 	showPoster,
 	handleShowPoster,
+	hiddenSectionsData,
 }) {
 	return (
 		<>
 			<Title>Edycja</Title>
 
 			<div className={styles.wrapper}>
-				{/* <Checkbox hidden={hidden.hideAnnouncements} type='hideAnnouncements'/> */}
+				<HideCheckbox
+					name='information'
+					hidden={hiddenSectionsData[0].information}
+				/>
 
 				<button onClick={handleShowPoster} className={styles.button}>
 					Pokaż {!showPoster ? 'plakat' : 'text'}

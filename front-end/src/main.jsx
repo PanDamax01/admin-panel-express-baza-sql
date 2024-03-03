@@ -64,18 +64,18 @@ const router = createBrowserRouter([
 				path: '/panel/slider',
 				element: <SliderPage />,
 				action: actionsSlider,
-				loader: () => loader('sliders'),
+				loader: () => loaderDataAndHideSections('sliders'),
 			},
 			{
 				path: '/panel/ogloszenia',
 				element: <InformationsPage />,
 				action: actionsInformations,
-				loader: () => loader('informations'),
+				loader: () => loaderDataAndHideSections('informations'),
 			},
 			{
 				path: '/panel/sale',
 				element: <ClassroomPage />,
-				loader: () => loader('classrooms'),
+				loader: () => loaderDataAndHideSections('classrooms'),
 			},
 			{
 				path: '/panel/uzytkownicy',

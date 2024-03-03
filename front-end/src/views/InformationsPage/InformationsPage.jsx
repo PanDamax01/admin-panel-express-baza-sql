@@ -3,10 +3,13 @@ import { InformationsForm } from '../../components/InformationsForm/Informations
 import { InformationsPreview } from '../../components/InformationsPreview/InformationsPreview'
 import { Wrapper } from '../../components/Wrapper/Wrapper'
 import { useLoaderData } from 'react-router-dom'
+import { HiddenSectionInfo } from '../../components/HiddenSectionInfo/HiddenSectionInfo'
 
 export function InformationsPage() {
-	const informationsData = useLoaderData()
+	const { jsonData: informationsData, hiddenSectionsData } = useLoaderData()
 	const [showPoster, setShowPoster] = useState(informationsData[0].show_img)
+
+	console.log(hiddenSectionsData[0].information)
 
 	function handleShowPoster() {
 		setShowPoster(!showPoster)
@@ -14,14 +17,20 @@ export function InformationsPage() {
 
 	return (
 		<Wrapper>
-			<InformationsPreview
-				showPoster={showPoster}
-				informationsData={informationsData[0]}
-			/>
+			{!hiddenSectionsData[0].information ? (
+				<HiddenSectionInfo name='ogłoszenia' />
+			) : (
+				<InformationsPreview
+					showPoster={showPoster}
+					informationsData={informationsData[0]}
+				/>
+			)}
+
 			<InformationsForm
 				showPoster={showPoster}
 				informationsData={informationsData[0]}
 				handleShowPoster={handleShowPoster}
+				hiddenSectionsData={hiddenSectionsData}
 			/>
 		</Wrapper>
 	)

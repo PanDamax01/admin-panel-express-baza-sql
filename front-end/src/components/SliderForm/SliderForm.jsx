@@ -5,6 +5,7 @@ import { FormLabel } from '../FormLabel/FormLabel'
 import { Title } from '../Title/Title'
 import { fetchData } from '../../api/fetchData'
 import { Form } from 'react-router-dom'
+import { HideCheckbox } from '../HideCheckbox/HideCheckbox'
 
 export async function actionsSlider({ request }) {
 	const data = Object.fromEntries(await request.formData())
@@ -23,13 +24,16 @@ export async function actionsSlider({ request }) {
 	}
 }
 
-export function SliderForm({ slidersData }) {
+export function SliderForm({ slidersData, hiddenSectionsData }) {
 	return (
 		<>
 			<Title>Edycja</Title>
 
 			<div className={styles.wrapper}>
-				{/* <Checkbox hidden={hidden.hideSlider} type='hideSlider' /> */}
+			<HideCheckbox
+					name='slider'
+					hidden={hiddenSectionsData[0].slider}
+				/>
 
 				<FormButtonAddRow method='POST' action='/panel/slider'>
 					Dodaj kolejne zdjęcie
