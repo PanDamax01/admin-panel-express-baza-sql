@@ -1,5 +1,6 @@
 import express from "express";
 import { sliderController } from "../controllers/sliderController.js";
+import upload from "../middlewares/multerMiddleware.js";
 
 const router = express.Router();
 
@@ -7,10 +8,10 @@ router.get("/", sliderController.index);
 
 router.get("/:id", sliderController.showSlider);
 
-router.post("/", sliderController.create);
+router.post("/", upload.single("file"), sliderController.create);
 
-router.put("/:id", sliderController.update);
+router.put("/:id", upload.single("file"), sliderController.update);
 
-router.delete("/:id", sliderController.delete);
+router.delete("/:id", upload.single("file"), sliderController.delete);
 
 export default router;
